@@ -1,14 +1,11 @@
-{ pkgs }:
-
+{ pkgs, ... }:
 let
-  nodePackages = import ./default.nix {
-    inherit pkgs system;
-  };
+  nodePackages = import ./default.nix { inherit pkgs; };
 
 in
 {
   packages = {
-    ambire-wallet = nodePackages.ambire-wallet.override {
+    default = nodePackages.package.override {
       buildInputs = with pkgs; [ pkgconfig hidapi ];
     };
   };
