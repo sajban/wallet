@@ -6,7 +6,12 @@ in
 {
   packages = {
     default = nodePackages.package.override {
-      buildInputs = with pkgs; [ pkgconfig hidapi ];
+      buildInputs = with pkgs; [ pkgconfig hidapi udev libusb1 ];
+    };
+
+    develop = pkgs.buildEnv {
+      name = "ambire-wallet-develop-env";
+      paths = with pkgs; [ pkgconfig hidapi udev libusb1 python3 typescript ];
     };
   };
 }
